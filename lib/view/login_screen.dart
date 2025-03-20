@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sample_airbnb_app/Authentication/google_authentication.dart';
+import 'package:sample_airbnb_app/view/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -100,7 +102,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       30,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        await FirebaseAuthServices().signInWithGoogle();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AppMainScreen(),
+                          ),
+                        );
+                      },
                       child: socialIcons(
                         size,
                         FontAwesomeIcons.google,
