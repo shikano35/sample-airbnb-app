@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -39,6 +40,99 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: size.height * 0.02),
                     phoneNumberField(size),
+                    SizedBox(height: 10),
+                    RichText(
+                      text: TextSpan(
+                        text:
+                            "We'll call or text you to conform your number. Standart message and data rates apply.  ",
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                        children: [
+                          TextSpan(
+                            text: "Privacy Policy",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.03),
+                    Container(
+                      width: size.width,
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.pink,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Continue",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.026),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(height: 1, color: Colors.black26),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text("or", style: TextStyle(fontSize: 18)),
+                        ),
+                        Expanded(
+                          child: Container(height: 1, color: Colors.black26),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: size.height * 0.015),
+                    socialIcons(
+                      size,
+                      Icons.facebook,
+                      "Continue with Facebook",
+                      Colors.blue,
+                      30,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: socialIcons(
+                        size,
+                        FontAwesomeIcons.google,
+                        "Continue with Google",
+                        Colors.pink,
+                        27,
+                      ),
+                    ),
+                    socialIcons(
+                      size,
+                      FontAwesomeIcons.apple,
+                      "Continue with Apple",
+                      Colors.black,
+                      30,
+                    ),
+                    socialIcons(
+                      size,
+                      Icons.email_outlined,
+                      "Continue with email",
+                      Colors.black,
+                      30,
+                    ),
+                    SizedBox(height: 10),
+                    Center(
+                      child: Text(
+                        "Need help?",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -48,6 +142,32 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+}
+
+Padding socialIcons(Size size, icon, name, color, double iconSize) {
+  return Padding(
+    padding: EdgeInsets.only(bottom: 15),
+    child: Container(
+      width: size.width,
+      padding: EdgeInsets.symmetric(vertical: 11),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(),
+      ),
+      child: Row(
+        children: [
+          SizedBox(width: size.width * 0.05),
+          Icon(icon, color: color, size: iconSize),
+          SizedBox(width: size.width * 0.18),
+          Text(
+            name,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          ),
+          SizedBox(width: 10),
+        ],
+      ),
+    ),
+  );
 }
 
 Container phoneNumberField(Size size) {
