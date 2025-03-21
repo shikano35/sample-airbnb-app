@@ -22,34 +22,36 @@ class SearchBarAndFilter extends StatelessWidget {
                   children: [
                     Icon(Icons.search, size: 32),
                     SizedBox(width: 8),
-                    Column(
-                      children: [
-                        Text(
-                          '  Where to?',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                          width: 240,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                              ),
-                              hintText: "Anywhere . Any week . Add guests",
-                              hintStyle: TextStyle(
-                                fontSize: 13,
-                                color: Colors.black38,
-                              ),
-                              filled: true,
-                              fillColor: Colors.white,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '  Where to?',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: 20,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                                hintText: "Anywhere . Any week . Add guests",
+                                hintStyle: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.black38,
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
