@@ -25,6 +25,7 @@ class _DisplayTotalPriceState extends State<DisplayTotalPrice> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Display total price",

@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sample_airbnb_app/Components/display_place.dart';
 import 'package:sample_airbnb_app/Components/display_total_price.dart';
 import 'package:sample_airbnb_app/Components/search_bar_and_filter.dart';
 
@@ -13,6 +16,8 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   final CollectionReference categoryCollection = FirebaseFirestore.instance
       .collection('AppCategory');
+  final CollectionReference placeCollection = FirebaseFirestore.instance
+      .collection('myAppCpollection');
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -21,12 +26,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         bottom: false,
-        child: Column(
-          children: [
-            SearchBarAndFilter(),
-            listOfCategoryItems(size),
-            const DisplayTotalPrice(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SearchBarAndFilter(),
+              listOfCategoryItems(size),
+              const DisplayTotalPrice(),
+              const DisplayPlace(),
+            ],
+          ),
         ),
       ),
     );
