@@ -14,6 +14,7 @@ class _DisplayPlaceState extends State<DisplayPlace> {
       .collection('myAppCpollection');
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return StreamBuilder(
       stream: placeCollection.snapshots(),
       builder: (context, streamSnapshot) {
@@ -37,7 +38,7 @@ class _DisplayPlaceState extends State<DisplayPlace> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: SizedBox(
-                              height: 360,
+                              height: 375,
                               width: double.infinity,
                               child: AnotherCarousel(
                                 images:
@@ -75,11 +76,7 @@ class _DisplayPlaceState extends State<DisplayPlace> {
                                         ),
                                       ),
                                     )
-                                    : SizedBox(
-                                      width:
-                                          MediaQuery.of(context).size.width *
-                                          0.03,
-                                    ),
+                                    : SizedBox(width: size.width * 0.03),
                                 Spacer(),
                                 Stack(
                                   alignment: Alignment.center,
@@ -90,6 +87,7 @@ class _DisplayPlaceState extends State<DisplayPlace> {
                                       size: 34,
                                     ),
                                     InkWell(
+                                      onTap: () {},
                                       child: Icon(
                                         Icons.favorite,
                                         size: 30,
@@ -101,8 +99,56 @@ class _DisplayPlaceState extends State<DisplayPlace> {
                               ],
                             ),
                           ),
+                          vendorProfile(place),
                         ],
                       ),
+                      SizedBox(height: size.height * 0.01),
+                      Row(
+                        children: [
+                          Text(
+                            place['address'],
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(Icons.star),
+                          SizedBox(width: 5),
+                          Text(place['rating'].toString()),
+                        ],
+                      ),
+                      Text(
+                        "Stay with ${place['vendor']} . ${place['vendorProfession']}",
+                        style: TextStyle(color: Colors.black54, fontSize: 16.5),
+                      ),
+                      Text(
+                        place['date'],
+                        style: TextStyle(color: Colors.black54, fontSize: 16.5),
+                      ),
+                      SizedBox(height: size.height * 0.007),
+                      RichText(
+                        text: TextSpan(
+                          text: '\$${place['price']}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "night",
+                              style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: size.height * 0.025),
                     ],
                   ),
                 ),
@@ -114,4 +160,34 @@ class _DisplayPlaceState extends State<DisplayPlace> {
       },
     );
   }
+}
+
+Positioned vendorProfile(QueryDocumentSnapshot place) {
+  return Positioned(
+    bottom: 11,
+    left: 10,
+    child: Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(15),
+            bottomRight: Radius.circular(15),
+          ),
+          child: Image.asset(
+            "asset/images/book_cover.png",
+            height: 60,
+            width: 60,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Positioned(
+          top: 10,
+          left: 10,
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(place['vendorProfile']),
+          ),
+        ),
+      ],
+    ),
+  );
 }

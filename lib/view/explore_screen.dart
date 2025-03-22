@@ -32,6 +32,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               SearchBarAndFilter(),
               listOfCategoryItems(size),
               const DisplayTotalPrice(),
+              SizedBox(height: 15),
               const DisplayPlace(),
             ],
           ),
