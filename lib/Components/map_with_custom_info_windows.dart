@@ -80,6 +80,34 @@ class _MapWithCustomInfoWindowsState extends State<MapWithCustomInfoWindows> {
                                 ),
                               ),
                             ),
+                            Positioned(
+                              top: 10,
+                              left: 14,
+                              right: 14,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 5,
+                                      horizontal: 12,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    child: Text(
+                                      "Guest Favorite",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ],
