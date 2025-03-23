@@ -35,9 +35,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const DisplayTotalPrice(),
+                    DisplayTotalPrice(),
                     SizedBox(height: 15),
-                    const DisplayPlace(),
+                    DisplayPlace(),
                   ],
                 ),
               ),
