@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sample_airbnb_app/Components/my_icon_button.dart';
 
 class MapWithCustomInfoWindows extends StatefulWidget {
   const MapWithCustomInfoWindows({super.key});
@@ -105,10 +106,82 @@ class _MapWithCustomInfoWindowsState extends State<MapWithCustomInfoWindows> {
                                     ),
                                   ),
                                   Spacer(),
+                                  MyIconButton(
+                                    icon: Icons.favorite_border,
+                                    radius: 15,
+                                  ),
+                                  SizedBox(width: 13),
+                                  InkWell(
+                                    onTap: () {
+                                      _customInfoWindowController
+                                          .hideInfoWindow!();
+                                    },
+                                    child: MyIconButton(
+                                      icon: Icons.close,
+                                      radius: 15,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                           ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 8,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    data["address"],
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Icon(Icons.star),
+                                  SizedBox(width: 5),
+                                  Text(data['rating'].toString()),
+                                ],
+                              ),
+                              Text(
+                                "3066 m elevation",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                              Text(
+                                data['date'],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                              Text.rich(
+                                TextSpan(
+                                  text: '\$${data['price']}',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: "night",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
