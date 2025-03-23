@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sample_airbnb_app/Components/display_place.dart';
 import 'package:sample_airbnb_app/Components/display_total_price.dart';
+import 'package:sample_airbnb_app/Components/map_with_custom_info_windows.dart';
 import 'package:sample_airbnb_app/Components/search_bar_and_filter.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -26,18 +27,26 @@ class _ExploreScreenState extends State<ExploreScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         bottom: false,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SearchBarAndFilter(),
-              listOfCategoryItems(size),
-              const DisplayTotalPrice(),
-              SizedBox(height: 15),
-              const DisplayPlace(),
-            ],
-          ),
+        child: Column(
+          children: [
+            SearchBarAndFilter(),
+            listOfCategoryItems(size),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const DisplayTotalPrice(),
+                    SizedBox(height: 15),
+                    const DisplayPlace(),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: MapWithCustomInfoWindows(),
     );
   }
 
