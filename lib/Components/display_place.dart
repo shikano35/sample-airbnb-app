@@ -1,6 +1,7 @@
 import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sample_airbnb_app/Provider/favorite_provider.dart';
 import 'package:sample_airbnb_app/view/place_detail_screen.dart';
 
 class DisplayPlace extends StatefulWidget {
@@ -16,6 +17,7 @@ class _DisplayPlaceState extends State<DisplayPlace> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final provider = FavoriteProvider.of(context);
     return StreamBuilder(
       stream: placeCollection.snapshots(),
       builder: (context, streamSnapshot) {
@@ -95,11 +97,16 @@ class _DisplayPlaceState extends State<DisplayPlace> {
                                       size: 34,
                                     ),
                                     InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        provider.toggleFavorite(place);
+                                      },
                                       child: Icon(
                                         Icons.favorite,
                                         size: 30,
-                                        color: Colors.black54,
+                                        color:
+                                            provider.isExist(place)
+                                                ? Colors.red
+                                                : Colors.black54,
                                       ),
                                     ),
                                   ],

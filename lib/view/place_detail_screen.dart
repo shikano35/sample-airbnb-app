@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sample_airbnb_app/Components/location_in_map.dart';
 import 'package:sample_airbnb_app/Components/my_icon_button.dart';
 import 'package:sample_airbnb_app/Components/star_rating.dart';
+import 'package:sample_airbnb_app/Provider/favorite_provider.dart';
 
 class PlaceDetailScreen extends StatefulWidget {
   final DocumentSnapshot<Object?> place;
@@ -18,13 +19,14 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final provider = FavoriteProvider.of(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            detailImageandIcon(size, context),
+            detailImageandIcon(size, context, provider),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               child: Column(
@@ -318,7 +320,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
     );
   }
 
-  Stack detailImageandIcon(Size size, BuildContext context) {
+  Stack detailImageandIcon(Size size, BuildContext context, provider) {
     return Stack(
       children: [
         SizedBox(
@@ -377,8 +379,19 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                 MyIconButton(icon: Icons.share_outlined),
                 SizedBox(width: 20),
                 InkWell(
-                  onTap: () {},
-                  child: MyIconButton(icon: Icons.favorite_border),
+                  onTap: () {
+                    provider.toggleFavorite(widget.place);
+                  },
+                  child: MyIconButton(
+                    icon:
+                        provider.isExist(widget.place)
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                    iconColor:
+                        provider.isExist(widget.place)
+                            ? Colors.red
+                            : Colors.black,
+                  ),
                 ),
               ],
             ),
