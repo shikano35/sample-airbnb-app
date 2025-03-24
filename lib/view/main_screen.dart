@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_airbnb_app/view/explore_screen.dart';
 import 'package:sample_airbnb_app/view/message.dart';
+import 'package:sample_airbnb_app/view/profile_page.dart';
 import 'package:sample_airbnb_app/view/wishlists.dart';
 
 class AppMainScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _AppMainScreenState extends State<AppMainScreen> {
       Wishlists(),
       Scaffold(),
       MessageScreen(),
-      Scaffold(),
+      ProfilePage(),
     ];
     super.initState();
   }
